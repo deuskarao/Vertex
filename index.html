@@ -195,125 +195,133 @@ nav {
   padding: 0 24px 140px;
 }
 
-.showcase-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-  max-width: 1200px; margin: 0 auto;
+.showcase-wrapper {
+  max-width: 1100px; margin: 0 auto; position: relative;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
 }
 
-.platform-card {
-  position: relative; border-radius: 20px; overflow: hidden;
-  background: var(--bg-card); border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  padding: 40px; display: flex; flex-direction: column;
-  transition: all 0.4s ease;
+.showcase-divider {
+  position: absolute; left: 50%; top: 40px; bottom: 40px; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent);
+  z-index: 2;
 }
-.platform-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
 
-.platform-card.purple { box-shadow: inset 0 1px 0 rgba(124,58,237,0.1); }
-.platform-card.purple:hover { box-shadow: 0 20px 60px rgba(124,58,237,0.1), inset 0 1px 0 rgba(124,58,237,0.15); }
-
-.platform-card.teal { box-shadow: inset 0 1px 0 rgba(20,184,166,0.1); }
-.platform-card.teal:hover { box-shadow: 0 20px 60px rgba(20,184,166,0.1), inset 0 1px 0 rgba(20,184,166,0.15); }
+.platform-side {
+  padding: 40px 48px; display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.platform-side:first-child { padding-right: 56px; }
+.platform-side:last-child { padding-left: 56px; }
 
 .platform-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  padding: 6px 16px; border-radius: 100px; font-size: 11px; font-weight: 600;
   text-transform: uppercase; letter-spacing: 1px; width: fit-content;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
-.platform-badge.purple { background: var(--purple-soft); color: var(--purple); }
-.platform-badge.teal { background: var(--teal-soft); color: var(--teal); }
+.platform-badge.purple { background: var(--purple-soft); color: var(--purple); border: 1px solid rgba(124,58,237,0.15); }
+.platform-badge.teal { background: var(--teal-soft); color: var(--teal); border: 1px solid rgba(20,184,166,0.15); }
 
 .platform-name {
-  font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px;
+  font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px;
 }
 
 .platform-desc {
-  font-size: 14px; line-height: 1.7; color: var(--text-secondary);
-  margin-bottom: 28px; max-width: 360px;
+  font-size: 15px; line-height: 1.7; color: var(--text-secondary);
+  margin-bottom: 28px; max-width: 340px;
 }
 
 .platform-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
   text-decoration: none; transition: all 0.3s; width: fit-content; cursor: pointer;
-  border: none;
+  border: none; margin-bottom: 36px;
 }
-.platform-btn.purple { background: rgba(124,58,237,0.12); color: var(--purple); border: 1px solid rgba(124,58,237,0.2); }
-.platform-btn.purple:hover { background: rgba(124,58,237,0.2); }
-.platform-btn.teal { background: rgba(20,184,166,0.12); color: var(--teal); border: 1px solid rgba(20,184,166,0.2); }
-.platform-btn.teal:hover { background: rgba(20,184,166,0.2); }
+.platform-btn.purple { background: rgba(124,58,237,0.15); color: var(--purple); border: 1px solid rgba(124,58,237,0.25); }
+.platform-btn.purple:hover { background: rgba(124,58,237,0.25); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.2); }
+.platform-btn.teal { background: rgba(20,184,166,0.15); color: var(--teal); border: 1px solid rgba(20,184,166,0.25); }
+.platform-btn.teal:hover { background: rgba(20,184,166,0.25); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(20,184,166,0.2); }
 
 .platform-btn svg { width: 14px; height: 14px; }
 
-/* ─── DASHBOARD PREVIEWS ─── */
-.preview {
-  margin-top: 32px; border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--border); background: rgba(10, 12, 24, 0.8);
+/* ─── DASHBOARD PREVIEW CARDS ─── */
+.preview-card {
+  width: 100%; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(8, 12, 24, 0.8);
   padding: 20px; position: relative;
+  backdrop-filter: blur(12px);
+}
+.preview-card.purple { border-color: rgba(124,58,237,0.12); box-shadow: 0 0 40px rgba(124,58,237,0.05); }
+.preview-card.teal { border-color: rgba(20,184,166,0.12); box-shadow: 0 0 40px rgba(20,184,166,0.05); }
+
+.preview-top { display: flex; gap: 12px; margin-bottom: 16px; }
+
+.preview-chart-area {
+  flex: 1; min-width: 0;
 }
 
-.preview-header {
-  display: flex; align-items: center; gap: 6px; margin-bottom: 16px;
+.preview-chart-label {
+  font-size: 11px; font-weight: 600; color: var(--text-tertiary);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
 }
-.preview-dot { width: 8px; height: 8px; border-radius: 50%; }
-.preview-dot.r { background: #ff5f57; }
-.preview-dot.y { background: #febc2e; }
-.preview-dot.g { background: #28c840; }
 
-.preview-grid {
-  display: grid; gap: 10px;
+.preview-chart-value {
+  font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px;
 }
-.preview-grid.purple { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
-.preview-grid.teal { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+.preview-chart-value.purple { color: var(--purple); }
+.preview-chart-value.teal { color: var(--teal); }
 
-.preview-widget {
-  border-radius: 10px; padding: 14px;
-  border: 1px solid rgba(255,255,255,0.04);
+.preview-line-chart {
+  width: 100%; height: 80px; position: relative;
 }
-.preview-widget.dark { background: rgba(0,0,0,0.3); }
-.preview-widget.purple-tint { background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.1); }
-.preview-widget.teal-tint { background: rgba(20,184,166,0.06); border-color: rgba(20,184,166,0.1); }
 
-.widget-label { font-size: 10px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
-.widget-value { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
-.widget-value.purple { color: var(--purple); }
-.widget-value.teal { color: var(--teal); }
-
-.widget-chart { height: 60px; display: flex; align-items: flex-end; gap: 3px; margin-top: 8px; }
-.widget-bar {
-  flex: 1; border-radius: 3px 3px 0 0; transition: height 0.6s ease;
-  min-width: 4px;
+.preview-side-widgets {
+  width: 110px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
 }
-.widget-bar.purple { background: linear-gradient(to top, rgba(124,58,237,0.3), rgba(124,58,237,0.8)); }
-.widget-bar.teal { background: linear-gradient(to top, rgba(20,184,166,0.3), rgba(20,184,166,0.8)); }
 
-/* Metric row */
-.metric-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
-.metric-row + .metric-row { border-top: 1px solid rgba(255,255,255,0.04); }
-.metric-label { font-size: 11px; color: var(--text-secondary); }
-.metric-val { font-size: 12px; font-weight: 700; }
+.side-widget {
+  border-radius: 8px; padding: 10px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
+}
+.side-widget-label { font-size: 9px; color: var(--text-tertiary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Ring chart mock */
-.ring-mock {
-  width: 64px; height: 64px; border-radius: 50%; position: relative;
+.side-bars { display: flex; flex-direction: column; gap: 4px; }
+.side-bar-row { display: flex; align-items: center; gap: 6px; }
+.side-bar-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.side-bar-track { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06); overflow: hidden; }
+.side-bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
+
+.preview-bottom { display: flex; gap: 12px; }
+
+.preview-bottom-chart {
+  flex: 1; min-width: 0;
+}
+
+.preview-donut-area {
+  width: 110px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.donut-mock {
+  width: 80px; height: 80px; border-radius: 50%; position: relative;
   display: flex; align-items: center; justify-content: center;
 }
-.ring-mock::before {
+.donut-mock::before {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
-  border: 6px solid rgba(255,255,255,0.04);
+  border: 10px solid rgba(255,255,255,0.04);
 }
-.ring-mock::after {
+.donut-mock::after {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
-  border: 6px solid transparent;
+  border: 10px solid transparent;
 }
-.ring-mock.purple::after { border-top-color: var(--purple); border-right-color: var(--purple); transform: rotate(-30deg); }
-.ring-mock.teal::after { border-top-color: var(--teal); border-right-color: var(--teal); border-bottom-color: var(--teal); transform: rotate(60deg); }
-.ring-value { font-size: 13px; font-weight: 800; z-index: 1; }
+.donut-mock.teal::after { border-top-color: var(--teal); border-right-color: var(--teal); border-bottom-color: rgba(20,184,166,0.4); transform: rotate(30deg); }
+.donut-mock.purple::after { border-top-color: var(--purple); border-right-color: var(--purple); border-bottom-color: rgba(124,58,237,0.4); transform: rotate(30deg); }
 
-/* Mini line chart mock */
-.line-mock { height: 50px; position: relative; margin-top: 8px; }
-.line-mock svg { width: 100%; height: 100%; }
+/* SVG chart styles */
+.chart-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chart-area { opacity: 0.15; }
+.chart-dot { r: 3; }
+.chart-grid-line { stroke: rgba(255,255,255,0.04); stroke-width: 1; }
+.chart-axis-label { font-size: 8px; fill: var(--text-tertiary); }
 
 /* ─── FEATURES SECTION ─── */
 .features {
@@ -387,7 +395,9 @@ footer {
   nav { padding: 0 20px; }
   .nav-links a:not(.nav-cta) { display: none; }
   .nav-login { display: none; }
-  .showcase-grid { grid-template-columns: 1fr; }
+  .showcase-wrapper { grid-template-columns: 1fr; }
+  .showcase-divider { display: none; }
+  .platform-side { padding: 32px 24px !important; }
   .features-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 36px; letter-spacing: -1px; }
   .hero-sub { font-size: 15px; }
@@ -452,50 +462,78 @@ footer {
 
 <!-- PLATFORM SHOWCASE -->
 <section class="showcase" id="platforms">
-  <div class="showcase-grid">
+  <div class="showcase-wrapper">
+    <div class="showcase-divider"></div>
 
     <!-- UniPulse -->
-    <div class="platform-card purple animate-on-scroll">
-      <span class="platform-badge purple">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        Akademik Analitik
-      </span>
+    <div class="platform-side animate-on-scroll">
+      <span class="platform-badge purple">Akademik Analitik</span>
       <h3 class="platform-name">UniPulse</h3>
-      <p class="platform-desc">
-        GPA takibi, ders analizleri ve akademik performans raporları.
-        Başarını veriye dayalı şekilde artır.
-      </p>
+      <p class="platform-desc">Veriye dayalı analizlerle akademik hedeflerinize ulaşın.</p>
       <a href="https://deuskarao.github.io/UniPulse/" target="_blank" class="platform-btn purple">
-        Keşfet
+        UniPulse'a Git
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
 
-      <div class="preview">
-        <div class="preview-header">
-          <div class="preview-dot r"></div>
-          <div class="preview-dot y"></div>
-          <div class="preview-dot g"></div>
+      <div class="preview-card purple">
+        <div class="preview-top">
+          <div class="preview-chart-area">
+            <div class="preview-chart-label">GPA Trendi</div>
+            <div class="preview-chart-value purple">3.45</div>
+            <div class="preview-line-chart">
+              <svg viewBox="0 0 200 80" preserveAspectRatio="none" width="100%" height="100%">
+                <line x1="0" y1="20" x2="200" y2="20" class="chart-grid-line"/>
+                <line x1="0" y1="40" x2="200" y2="40" class="chart-grid-line"/>
+                <line x1="0" y1="60" x2="200" y2="60" class="chart-grid-line"/>
+                <text x="0" y="18" class="chart-axis-label">4.0</text>
+                <text x="0" y="38" class="chart-axis-label">3.0</text>
+                <text x="0" y="58" class="chart-axis-label">2.0</text>
+                <text x="0" y="76" class="chart-axis-label">1.0</text>
+                <path d="M10,55 L40,48 L70,50 L100,38 L130,30 L160,22 L190,18" class="chart-line" stroke="var(--purple)"/>
+                <path d="M10,55 L40,48 L70,50 L100,38 L130,30 L160,22 L190,18 L190,80 L10,80 Z" class="chart-area" fill="var(--purple)"/>
+                <circle cx="10" cy="55" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="40" cy="48" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="70" cy="50" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="100" cy="38" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="130" cy="30" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="160" cy="22" class="chart-dot" fill="var(--purple)"/>
+                <circle cx="190" cy="18" class="chart-dot" fill="var(--purple)"/>
+                <text x="10" y="78" class="chart-axis-label">Oca</text>
+                <text x="38" y="78" class="chart-axis-label">Şub</text>
+                <text x="66" y="78" class="chart-axis-label">Mar</text>
+                <text x="96" y="78" class="chart-axis-label">Nis</text>
+                <text x="126" y="78" class="chart-axis-label">May</text>
+                <text x="156" y="78" class="chart-axis-label">Haz</text>
+              </svg>
+            </div>
+          </div>
+          <div class="preview-side-widgets">
+            <div class="side-widget">
+              <div class="side-widget-label">Dersler</div>
+              <div class="side-bars">
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:85%;background:var(--purple)"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:70%;background:var(--purple);opacity:0.6"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:55%;background:var(--purple);opacity:0.35"></div></div></div>
+              </div>
+            </div>
+            <div class="side-widget">
+              <div class="side-widget-label">Performans</div>
+              <div class="side-bars">
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:92%;background:var(--purple)"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:65%;background:var(--purple);opacity:0.6"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:48%;background:var(--purple);opacity:0.35"></div></div></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="preview-grid purple">
-          <div class="preview-widget purple-tint">
-            <div class="widget-label">GPA Trend</div>
-            <div class="widget-value purple">3.72</div>
-            <div class="widget-chart" id="gpaChart"></div>
-          </div>
-          <div class="preview-widget dark">
-            <div class="widget-label">Ders Başarısı</div>
-            <div class="metric-row"><span class="metric-label">Matematik</span><span class="metric-val" style="color:var(--purple)">A</span></div>
-            <div class="metric-row"><span class="metric-label">Fizik</span><span class="metric-val" style="color:var(--purple)">A-</span></div>
-            <div class="metric-row"><span class="metric-label">Programlama</span><span class="metric-val" style="color:#22c55e">A+</span></div>
-          </div>
-          <div class="preview-widget dark" style="grid-column: span 2;">
-            <div class="widget-label">Dönem Performansı</div>
-            <div style="display:flex;align-items:center;gap:16px;margin-top:8px;">
-              <div class="ring-mock purple"><span class="ring-value" style="color:var(--purple)">87%</span></div>
-              <div style="flex:1;">
-                <div class="metric-row"><span class="metric-label">Toplam Kredi</span><span class="metric-val" style="color:var(--text-primary)">21</span></div>
-                <div class="metric-row"><span class="metric-label">Tamamlanan</span><span class="metric-val" style="color:var(--purple)">18</span></div>
-                <div class="metric-row"><span class="metric-label">Ortalama</span><span class="metric-val" style="color:var(--text-primary)">3.72</span></div>
+        <div class="preview-bottom">
+          <div class="preview-bottom-chart" style="width:100%;">
+            <div class="side-widget" style="width:100%;">
+              <div class="side-widget-label">Dönem Notları</div>
+              <div class="side-bars">
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:90%;background:var(--purple)"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:75%;background:var(--purple);opacity:0.6"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:60%;background:var(--purple);opacity:0.35"></div></div></div>
               </div>
             </div>
           </div>
@@ -504,49 +542,69 @@ footer {
     </div>
 
     <!-- LifeOS -->
-    <div class="platform-card teal animate-on-scroll" style="transition-delay: 0.1s;">
-      <span class="platform-badge teal">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Finansal Yönetim
-      </span>
+    <div class="platform-side animate-on-scroll" style="transition-delay:0.1s">
+      <span class="platform-badge teal">Finansal Yönetim</span>
       <h3 class="platform-name">LifeOS</h3>
-      <p class="platform-desc">
-        Bütçe takibi, birikim hedefleri ve finansal analizler.
-        Finansal özgürlüğüne giden yolda veriyle ilerle.
-      </p>
+      <p class="platform-desc">Finansal özgürlüğünüz için akıllı yönetim.</p>
       <a href="https://deuskarao.github.io/LifeOS/" target="_blank" class="platform-btn teal">
-        Keşfet
+        LifeOS'a Git
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
 
-      <div class="preview">
-        <div class="preview-header">
-          <div class="preview-dot r"></div>
-          <div class="preview-dot y"></div>
-          <div class="preview-dot g"></div>
-        </div>
-        <div class="preview-grid teal">
-          <div class="preview-widget teal-tint">
-            <div class="widget-label">Net Değer</div>
-            <div class="widget-value teal">₺284,500</div>
-            <div class="widget-chart" id="networthChart"></div>
+      <div class="preview-card teal">
+        <div class="preview-top">
+          <div class="preview-chart-area">
+            <div class="preview-chart-label">Bu Aylık Tasarruf</div>
+            <div class="preview-chart-value teal">₺4.250</div>
+            <div class="preview-line-chart">
+              <svg viewBox="0 0 200 80" preserveAspectRatio="none" width="100%" height="100%">
+                <line x1="0" y1="20" x2="200" y2="20" class="chart-grid-line"/>
+                <line x1="0" y1="40" x2="200" y2="40" class="chart-grid-line"/>
+                <line x1="0" y1="60" x2="200" y2="60" class="chart-grid-line"/>
+                <text x="0" y="18" class="chart-axis-label">8K</text>
+                <text x="0" y="38" class="chart-axis-label">6K</text>
+                <text x="0" y="58" class="chart-axis-label">4K</text>
+                <text x="0" y="76" class="chart-axis-label">2K</text>
+                <path d="M10,60 L40,52 L70,48 L100,42 L130,35 L160,28 L190,20" class="chart-line" stroke="var(--teal)"/>
+                <path d="M10,60 L40,52 L70,48 L100,42 L130,35 L160,28 L190,20 L190,80 L10,80 Z" class="chart-area" fill="var(--teal)"/>
+                <circle cx="10" cy="60" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="40" cy="52" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="70" cy="48" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="100" cy="42" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="130" cy="35" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="160" cy="28" class="chart-dot" fill="var(--teal)"/>
+                <circle cx="190" cy="20" class="chart-dot" fill="var(--teal)"/>
+                <text x="10" y="78" class="chart-axis-label">Oca</text>
+                <text x="38" y="78" class="chart-axis-label">Şub</text>
+                <text x="66" y="78" class="chart-axis-label">Mar</text>
+                <text x="96" y="78" class="chart-axis-label">Nis</text>
+                <text x="126" y="78" class="chart-axis-label">May</text>
+                <text x="156" y="78" class="chart-axis-label">Haz</text>
+              </svg>
+            </div>
           </div>
-          <div class="preview-widget dark">
-            <div class="widget-label">Gider Dağılımı</div>
-            <div class="metric-row"><span class="metric-label">Kira</span><span class="metric-val" style="color:var(--teal)">₺8,500</span></div>
-            <div class="metric-row"><span class="metric-label">Faturalar</span><span class="metric-val" style="color:var(--teal)">₺2,100</span></div>
-            <div class="metric-row"><span class="metric-label">Market</span><span class="metric-val" style="color:#f59e0b">₺3,400</span></div>
-          </div>
-          <div class="preview-widget dark" style="grid-column: span 2;">
-            <div class="widget-label">Aylık Özet</div>
-            <div style="display:flex;align-items:center;gap:16px;margin-top:8px;">
-              <div class="ring-mock teal"><span class="ring-value" style="color:var(--teal)">64%</span></div>
-              <div style="flex:1;">
-                <div class="metric-row"><span class="metric-label">Gelir</span><span class="metric-val" style="color:var(--text-primary)">₺42,000</span></div>
-                <div class="metric-row"><span class="metric-label">Gider</span><span class="metric-val" style="color:var(--teal)">₺15,200</span></div>
-                <div class="metric-row"><span class="metric-label">Birikim</span><span class="metric-val" style="color:#22c55e">₺26,800</span></div>
+          <div class="preview-side-widgets">
+            <div class="side-widget">
+              <div class="side-widget-label">Giderler</div>
+              <div class="side-bars">
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:80%;background:var(--teal)"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:60%;background:var(--teal);opacity:0.6"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:40%;background:var(--teal);opacity:0.35"></div></div></div>
               </div>
             </div>
+            <div class="side-widget">
+              <div class="side-widget-label">Birikim</div>
+              <div class="side-bars">
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:72%;background:var(--teal)"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:55%;background:var(--teal);opacity:0.6"></div></div></div>
+                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:38%;background:var(--teal);opacity:0.35"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-bottom">
+          <div class="preview-bottom-chart" style="width:100%;display:flex;align-items:center;justify-content:center;">
+            <div class="donut-mock teal"></div>
           </div>
         </div>
       </div>
@@ -605,21 +663,6 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-// Bar charts
-function renderBars(id, count, color, minH, maxH) {
-  const c = document.getElementById(id);
-  if (!c) return;
-  const heights = [40,55,35,70,50,80,45,90,60,75,50,85];
-  for (let i = 0; i < count; i++) {
-    const bar = document.createElement('div');
-    bar.className = 'widget-bar ' + color;
-    bar.style.height = (heights[i % heights.length] / 100 * (maxH - minH) + minH) + 'px';
-    c.appendChild(bar);
-  }
-}
-renderBars('gpaChart', 12, 'purple', 12, 50);
-renderBars('networthChart', 12, 'teal', 12, 50);
 </script>
 
 </body>
