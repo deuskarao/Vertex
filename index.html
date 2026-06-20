@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vertex — Hayatını Kolaylaştıran Dijital Platformlar</title>
+<title>Vertex — Dijital Ekosistem</title>
 <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,412 +11,351 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg-primary: #06080f;
-  --bg-secondary: #0c1020;
-  --bg-card: rgba(15, 20, 40, 0.6);
-  --border: rgba(255, 255, 255, 0.06);
-  --text-primary: #f0f2f8;
-  --text-secondary: #8892a8;
-  --text-tertiary: #555e74;
+  --bg: #060a13;
+  --bg-card: rgba(10, 15, 30, 0.7);
+  --border: rgba(255,255,255,0.06);
+  --text: #e8ecf4;
+  --text-dim: #7a859a;
+  --text-muted: #4a5568;
   --purple: #7C3AED;
-  --purple-soft: rgba(124, 58, 237, 0.15);
-  --purple-glow: rgba(124, 58, 237, 0.4);
-  --teal: #14B8A6;
-  --teal-soft: rgba(20, 184, 166, 0.15);
-  --teal-glow: rgba(20, 184, 166, 0.4);
+  --purple-glow: rgba(124,58,237,0.25);
+  --teal: #2dd4bf;
+  --teal-glow: rgba(45,212,191,0.25);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 48px; height: 64px;
+  padding: 0 48px; height: 60px;
   display: flex; align-items: center; justify-content: space-between;
-  background: rgba(6, 8, 15, 0.7);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  background: rgba(6,10,19,0.75);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
 }
 
 .nav-logo {
-  font-size: 18px; font-weight: 800; letter-spacing: 2px;
-  background: linear-gradient(135deg, #f0f2f8 0%, #8892a8 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  text-decoration: none;
+  font-size: 17px; font-weight: 800; letter-spacing: 2.5px;
+  color: var(--text); text-decoration: none;
 }
 
-.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
 
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--text-secondary);
+  font-size: 13px; font-weight: 500; color: var(--text-dim);
   text-decoration: none; transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--text-primary); }
-
-.nav-cta {
-  padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-  color: var(--text-primary); cursor: pointer; transition: all 0.2s;
-  text-decoration: none;
-}
-.nav-cta:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.12); }
+.nav-links a:hover { color: var(--text); }
 
 .nav-login { position: relative; }
+.nav-login-trigger {
+  padding: 7px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: var(--text); cursor: pointer; transition: all 0.2s;
+}
+.nav-login-trigger:hover { background: rgba(255,255,255,0.08); }
 .nav-login-dropdown {
-  position: absolute; top: calc(100% + 12px); right: 0;
+  position: absolute; top: calc(100% + 10px); right: 0;
   min-width: 200px; border-radius: 12px; overflow: hidden;
-  background: rgba(15, 20, 40, 0.95); border: 1px solid var(--border);
-  backdrop-filter: blur(24px); padding: 6px;
-  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  background: rgba(12, 18, 35, 0.96); border: 1px solid var(--border);
+  backdrop-filter: blur(20px); padding: 6px;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
   transition: all 0.2s ease;
 }
-.nav-login:hover .nav-login-dropdown,
-.nav-login:focus-within .nav-login-dropdown {
+.nav-login:hover .nav-login-dropdown {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 .nav-login-dropdown a {
   display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
-  color: var(--text-secondary); text-decoration: none; transition: all 0.15s;
+  padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  color: var(--text-dim); text-decoration: none; transition: all 0.15s;
 }
-.nav-login-dropdown a:hover { background: rgba(255,255,255,0.06); color: var(--text-primary); }
-.nav-login-dropdown .dd-icon {
+.nav-login-dropdown a:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+.dd-icon {
   width: 28px; height: 28px; border-radius: 7px; display: flex;
   align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
 }
-.nav-login-dropdown .dd-icon.purple { background: var(--purple-soft); color: var(--purple); }
-.nav-login-dropdown .dd-icon.teal { background: var(--teal-soft); color: var(--teal); }
-.nav-login-dropdown .dd-label { font-weight: 600; }
-.nav-login-dropdown .dd-sub { font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+.dd-icon.purple { background: rgba(124,58,237,0.12); }
+.dd-icon.teal { background: rgba(45,212,191,0.12); }
+.dd-label { font-weight: 600; color: var(--text); }
+.dd-sub { font-size: 11px; color: var(--text-muted); font-weight: 400; }
 
 /* ─── HERO ─── */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 120px 24px 80px; text-align: center;
+  padding: 140px 24px 60px; text-align: center;
+  min-height: 50vh;
 }
 
-.hero-glow {
-  position: absolute; border-radius: 50%; filter: blur(120px);
-  pointer-events: none; opacity: 0.5;
-}
-.hero-glow.purple {
-  width: 600px; height: 600px; left: -100px; top: 10%;
-  background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-}
-.hero-glow.teal {
-  width: 600px; height: 600px; right: -100px; top: 10%;
-  background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
-}
-.hero-glow.center {
-  width: 400px; height: 400px; left: 50%; top: 30%; transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+.hero-bg {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
 }
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 16px; border-radius: 100px;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  font-size: 12px; font-weight: 500; color: var(--text-secondary);
-  margin-bottom: 32px; backdrop-filter: blur(8px);
-  animation: fadeInUp 0.8s ease both;
+/* Vertical light beams */
+.hero-bg::before {
+  content: ''; position: absolute;
+  left: 50%; top: -20%; width: 1px; height: 140%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.04) 70%, transparent);
+  transform: translateX(-50%);
 }
-.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+.hero-bg::after {
+  content: ''; position: absolute;
+  left: 50%; top: 0; width: 200px; height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.015) 0%, transparent 70%);
+  transform: translateX(-50%);
+}
+
+/* Colored glows */
+.hero-glow-left {
+  position: absolute; left: -10%; top: 20%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+  filter: blur(80px); pointer-events: none;
+}
+.hero-glow-right {
+  position: absolute; right: -10%; top: 20%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%);
+  filter: blur(80px); pointer-events: none;
+}
 
 .hero h1 {
-  font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.08;
-  letter-spacing: -2px; max-width: 800px;
-  animation: fadeInUp 0.8s ease 0.1s both;
+  font-size: clamp(36px, 5vw, 58px); font-weight: 800; line-height: 1.1;
+  letter-spacing: -1.5px; max-width: 700px;
+  animation: fadeUp 0.7s ease both;
 }
-.hero h1 .gradient {
+.hero h1 .g {
   background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
 .hero-sub {
-  font-size: 18px; line-height: 1.7; color: var(--text-secondary);
-  max-width: 520px; margin-top: 24px; font-weight: 400;
-  animation: fadeInUp 0.8s ease 0.2s both;
+  font-size: 17px; line-height: 1.7; color: var(--text-dim);
+  max-width: 480px; margin-top: 20px;
+  animation: fadeUp 0.7s ease 0.1s both;
 }
 
 .hero-actions {
-  display: flex; gap: 14px; margin-top: 48px;
-  animation: fadeInUp 0.8s ease 0.3s both;
+  display: flex; gap: 12px; margin-top: 40px;
+  animation: fadeUp 0.7s ease 0.2s both;
 }
 
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px; border-radius: 12px; font-size: 14px; font-weight: 600;
-  text-decoration: none; transition: all 0.3s ease; cursor: pointer;
-  border: none; position: relative; overflow: hidden;
+  padding: 13px 26px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: all 0.25s; cursor: pointer; border: none;
 }
-
 .btn-purple {
   background: linear-gradient(135deg, var(--purple), #6D28D9);
-  color: white; box-shadow: 0 0 30px rgba(124,58,237,0.3);
+  color: white; box-shadow: 0 0 24px rgba(124,58,237,0.25);
 }
-.btn-purple:hover { box-shadow: 0 0 50px rgba(124,58,237,0.5); transform: translateY(-2px); }
-
+.btn-purple:hover { box-shadow: 0 0 40px rgba(124,58,237,0.4); transform: translateY(-2px); }
 .btn-teal {
-  background: linear-gradient(135deg, var(--teal), #0D9488);
-  color: white; box-shadow: 0 0 30px rgba(20,184,166,0.3);
+  background: linear-gradient(135deg, var(--teal), #14b8a6);
+  color: #060a13; box-shadow: 0 0 24px rgba(45,212,191,0.25);
 }
-.btn-teal:hover { box-shadow: 0 0 50px rgba(20,184,166,0.5); transform: translateY(-2px); }
+.btn-teal:hover { box-shadow: 0 0 40px rgba(45,212,191,0.4); transform: translateY(-2px); }
 
-.btn-ghost {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  color: var(--text-primary); backdrop-filter: blur(8px);
-}
-.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
-
-.hero-visual {
-  position: relative; width: 100%; max-width: 1100px; margin-top: 80px;
-  animation: fadeInUp 0.8s ease 0.4s both;
-}
-
-.hero-divider {
-  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0.06) 70%, transparent);
-  z-index: 2;
-}
-
-/* ─── PLATFORM SHOWCASE ─── */
+/* ─── SHOWCASE ─── */
 .showcase {
-  padding: 0 24px 140px;
+  position: relative; padding: 40px 24px 120px;
 }
 
-.showcase-wrapper {
-  max-width: 1100px; margin: 0 auto; position: relative;
+.showcase-inner {
+  max-width: 1100px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  position: relative;
 }
 
-.showcase-divider {
-  position: absolute; left: 50%; top: 40px; bottom: 40px; width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent);
-  z-index: 2;
+.showcase-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06) 15%, rgba(255,255,255,0.06) 85%, transparent);
+  z-index: 1;
 }
 
-.platform-side {
-  padding: 40px 48px; display: flex; flex-direction: column; align-items: center; text-align: center;
+.col {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 44px 0;
 }
-.platform-side:first-child { padding-right: 56px; }
-.platform-side:last-child { padding-left: 56px; }
+.col:first-child { padding-right: 52px; }
+.col:last-child { padding-left: 52px; }
 
-.platform-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 16px; border-radius: 100px; font-size: 11px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1px; width: fit-content;
-  margin-bottom: 24px;
+.col-badge {
+  display: inline-block;
+  padding: 5px 14px; border-radius: 100px; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  margin-bottom: 20px;
 }
-.platform-badge.purple { background: var(--purple-soft); color: var(--purple); border: 1px solid rgba(124,58,237,0.15); }
-.platform-badge.teal { background: var(--teal-soft); color: var(--teal); border: 1px solid rgba(20,184,166,0.15); }
+.col-badge.purple { background: rgba(124,58,237,0.1); color: var(--purple); border: 1px solid rgba(124,58,237,0.15); }
+.col-badge.teal { background: rgba(45,212,191,0.1); color: var(--teal); border: 1px solid rgba(45,212,191,0.15); }
 
-.platform-name {
-  font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px;
-}
-
-.platform-desc {
-  font-size: 15px; line-height: 1.7; color: var(--text-secondary);
-  margin-bottom: 28px; max-width: 340px;
+.col-title {
+  font-size: 30px; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 10px; text-align: center;
 }
 
-.platform-btn {
+.col-desc {
+  font-size: 15px; line-height: 1.7; color: var(--text-dim);
+  max-width: 320px; text-align: center; margin-bottom: 24px;
+}
+
+.col-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
-  text-decoration: none; transition: all 0.3s; width: fit-content; cursor: pointer;
-  border: none; margin-bottom: 36px;
+  padding: 11px 24px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: all 0.25s; cursor: pointer;
+  border: none; margin-bottom: 32px;
 }
-.platform-btn.purple { background: rgba(124,58,237,0.15); color: var(--purple); border: 1px solid rgba(124,58,237,0.25); }
-.platform-btn.purple:hover { background: rgba(124,58,237,0.25); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.2); }
-.platform-btn.teal { background: rgba(20,184,166,0.15); color: var(--teal); border: 1px solid rgba(20,184,166,0.25); }
-.platform-btn.teal:hover { background: rgba(20,184,166,0.25); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(20,184,166,0.2); }
+.col-btn.purple { background: rgba(124,58,237,0.12); color: var(--purple); border: 1px solid rgba(124,58,237,0.2); }
+.col-btn.purple:hover { background: rgba(124,58,237,0.2); }
+.col-btn.teal { background: rgba(45,212,191,0.12); color: var(--teal); border: 1px solid rgba(45,212,191,0.2); }
+.col-btn.teal:hover { background: rgba(45,212,191,0.2); }
+.col-btn svg { width: 14px; height: 14px; }
 
-.platform-btn svg { width: 14px; height: 14px; }
-
-/* ─── DASHBOARD PREVIEW CARDS ─── */
-.preview-card {
-  width: 100%; border-radius: 16px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(8, 12, 24, 0.8);
-  padding: 20px; position: relative;
-  backdrop-filter: blur(12px);
-}
-.preview-card.purple { border-color: rgba(124,58,237,0.12); box-shadow: 0 0 40px rgba(124,58,237,0.05); }
-.preview-card.teal { border-color: rgba(20,184,166,0.12); box-shadow: 0 0 40px rgba(20,184,166,0.05); }
-
-.preview-top { display: flex; gap: 12px; margin-bottom: 16px; }
-
-.preview-chart-area {
-  flex: 1; min-width: 0;
+/* ─── DASHBOARD CARD ─── */
+.dash-card {
+  width: 100%; border-radius: 14px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(8, 12, 24, 0.85);
+  padding: 18px;
 }
 
-.preview-chart-label {
-  font-size: 11px; font-weight: 600; color: var(--text-tertiary);
-  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+.dash-top { display: flex; gap: 10px; margin-bottom: 14px; }
+
+.dash-chart { flex: 1; min-width: 0; }
+.dash-chart-title { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 2px; }
+.dash-chart-val { font-size: 26px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+.dash-chart-val.purple { color: var(--purple); }
+.dash-chart-val.teal { color: var(--teal); }
+
+.dash-widgets { width: 100px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+
+.dw {
+  border-radius: 8px; padding: 8px 10px;
+  background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.03);
 }
+.dw-title { font-size: 8px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
 
-.preview-chart-value {
-  font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px;
+.dw-bars { display: flex; flex-direction: column; gap: 3px; }
+.dw-row { display: flex; align-items: center; gap: 5px; }
+.dw-dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+.dw-track { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.05); overflow: hidden; }
+.dw-fill { height: 100%; border-radius: 2px; }
+
+.dash-bottom { display: flex; gap: 10px; }
+.dash-bottom > * { flex: 1; }
+
+/* Donut */
+.donut-wrap { display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+.donut {
+  width: 72px; height: 72px; border-radius: 50%; position: relative;
 }
-.preview-chart-value.purple { color: var(--purple); }
-.preview-chart-value.teal { color: var(--teal); }
-
-.preview-line-chart {
-  width: 100%; height: 80px; position: relative;
-}
-
-.preview-side-widgets {
-  width: 110px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
-}
-
-.side-widget {
-  border-radius: 8px; padding: 10px;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04);
-}
-.side-widget-label { font-size: 9px; color: var(--text-tertiary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-.side-bars { display: flex; flex-direction: column; gap: 4px; }
-.side-bar-row { display: flex; align-items: center; gap: 6px; }
-.side-bar-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-.side-bar-track { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06); overflow: hidden; }
-.side-bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
-
-.preview-bottom { display: flex; gap: 12px; }
-
-.preview-bottom-chart {
-  flex: 1; min-width: 0;
-}
-
-.preview-donut-area {
-  width: 110px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-
-.donut-mock {
-  width: 80px; height: 80px; border-radius: 50%; position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.donut-mock::before {
+.donut::before {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
-  border: 10px solid rgba(255,255,255,0.04);
+  border: 9px solid rgba(255,255,255,0.04);
 }
-.donut-mock::after {
+.donut::after {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
-  border: 10px solid transparent;
+  border: 9px solid transparent;
 }
-.donut-mock.teal::after { border-top-color: var(--teal); border-right-color: var(--teal); border-bottom-color: rgba(20,184,166,0.4); transform: rotate(30deg); }
-.donut-mock.purple::after { border-top-color: var(--purple); border-right-color: var(--purple); border-bottom-color: rgba(124,58,237,0.4); transform: rotate(30deg); }
+.donut.t::after { border-top-color: var(--teal); border-right-color: var(--teal); border-bottom-color: rgba(45,212,191,0.35); transform: rotate(25deg); }
 
-/* SVG chart styles */
-.chart-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.chart-area { opacity: 0.15; }
-.chart-dot { r: 3; }
-.chart-grid-line { stroke: rgba(255,255,255,0.04); stroke-width: 1; }
-.chart-axis-label { font-size: 8px; fill: var(--text-tertiary); }
+/* SVG */
+.c-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.c-area { opacity: 0.12; }
+.c-dot { r: 2.5; }
+.c-grid { stroke: rgba(255,255,255,0.035); stroke-width: 0.5; }
+.c-label { font-size: 7px; fill: var(--text-muted); font-family: 'Inter', sans-serif; }
 
-/* ─── FEATURES SECTION ─── */
-.features {
-  padding: 100px 24px 140px; text-align: center;
-}
+/* ─── FEATURES ─── */
+.features { padding: 80px 24px 120px; text-align: center; }
 
 .features h2 {
-  font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px;
-  margin-bottom: 16px;
+  font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; letter-spacing: -1px;
+  margin-bottom: 12px;
 }
-
 .features .sub {
-  font-size: 16px; color: var(--text-secondary); max-width: 480px;
-  margin: 0 auto 64px; line-height: 1.7;
+  font-size: 15px; color: var(--text-dim); max-width: 440px;
+  margin: 0 auto 56px; line-height: 1.7;
 }
 
-.features-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  max-width: 1000px; margin: 0 auto;
+.f-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  max-width: 960px; margin: 0 auto;
 }
 
-.feature-card {
-  padding: 32px 24px; border-radius: 16px; text-align: left;
+.f-card {
+  padding: 28px 22px; border-radius: 14px; text-align: left;
   background: var(--bg-card); border: 1px solid var(--border);
-  backdrop-filter: blur(12px); transition: all 0.3s ease;
+  transition: all 0.3s;
 }
-.feature-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.f-card:hover { border-color: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
-.feature-icon {
-  width: 40px; height: 40px; border-radius: 10px; display: flex;
-  align-items: center; justify-content: center; margin-bottom: 18px;
-  font-size: 18px;
+.f-icon {
+  width: 36px; height: 36px; border-radius: 9px; display: flex;
+  align-items: center; justify-content: center; margin-bottom: 16px; font-size: 16px;
 }
-.feature-icon.purple { background: var(--purple-soft); }
-.feature-icon.teal { background: var(--teal-soft); }
-.feature-icon.neutral { background: rgba(255,255,255,0.05); }
+.f-icon.purple { background: rgba(124,58,237,0.1); }
+.f-icon.teal { background: rgba(45,212,191,0.1); }
+.f-icon.neutral { background: rgba(255,255,255,0.04); }
 
-.feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-.feature-card p { font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.f-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.f-card p { font-size: 12px; line-height: 1.7; color: var(--text-dim); }
 
 /* ─── FOOTER ─── */
 footer {
-  padding: 40px 48px; border-top: 1px solid var(--border);
+  padding: 36px 48px; border-top: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
 }
+footer span { font-size: 12px; color: var(--text-muted); }
 
-.footer-brand {
-  font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
-  color: var(--text-tertiary);
-}
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
+/* ─── ANIM ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.aos {
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.animate-on-scroll {
-  opacity: 0; transform: translateY(30px);
-  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+.aos.vis { opacity: 1; transform: translateY(0); }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
-  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-links a:not(.nav-login-trigger) { display: none; }
   .nav-login { display: none; }
-  .showcase-wrapper { grid-template-columns: 1fr; }
-  .showcase-divider { display: none; }
-  .platform-side { padding: 32px 24px !important; }
-  .features-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 36px; letter-spacing: -1px; }
-  .hero-sub { font-size: 15px; }
-  .hero-actions { flex-direction: column; width: 100%; max-width: 320px; }
+  .showcase-inner { grid-template-columns: 1fr; }
+  .showcase-line { display: none; }
+  .col { padding: 24px 20px 0 !important; }
+  .f-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+  .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
   .btn { justify-content: center; }
-  footer { padding: 32px 20px; }
+  footer { padding: 28px 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Vertex</a>
   <div class="nav-links">
     <a href="#platforms">Ürünler</a>
     <a href="#features">Özellikler</a>
     <div class="nav-login">
-      <span class="nav-cta" style="cursor:pointer">Giriş Yap ↓</span>
+      <span class="nav-login-trigger">Giriş Yap ↓</span>
       <div class="nav-login-dropdown">
         <a href="https://deuskarao.github.io/UniPulse/" target="_blank">
           <span class="dd-icon purple">🎓</span>
@@ -433,103 +372,98 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow purple"></div>
-  <div class="hero-glow teal"></div>
-  <div class="hero-glow center"></div>
-
-  <h1>Hayatını kolaylaştıran<br><span class="gradient">iki güçlü platform.</span></h1>
-
-  <p class="hero-sub">
-    Akademik başarını ve finansal hedeflerini destekleyen dijital araçlar.
-  </p>
-
+  <div class="hero-bg">
+    <div class="hero-glow-left"></div>
+    <div class="hero-glow-right"></div>
+  </div>
+  <h1>Hayatını kolaylaştıran<br><span class="g">iki güçlü platform.</span></h1>
+  <p class="hero-sub">Akademik başarını ve finansal hedeflerini destekleyen dijital araçlar.</p>
   <div class="hero-actions">
     <a href="https://deuskarao.github.io/UniPulse/" target="_blank" class="btn btn-purple">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
       UniPulse'a Git
     </a>
     <a href="https://deuskarao.github.io/LifeOS/" target="_blank" class="btn btn-teal">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       LifeOS'a Git
     </a>
   </div>
 </section>
 
-<!-- PLATFORM SHOWCASE -->
+<!-- SHOWCASE -->
 <section class="showcase" id="platforms">
-  <div class="showcase-wrapper">
-    <div class="showcase-divider"></div>
+  <div class="showcase-inner">
+    <div class="showcase-line"></div>
 
     <!-- UniPulse -->
-    <div class="platform-side animate-on-scroll">
-      <span class="platform-badge purple">Akademik Analitik</span>
-      <h3 class="platform-name">UniPulse</h3>
-      <p class="platform-desc">Veriye dayalı analizlerle akademik hedeflerinize ulaşın.</p>
-      <a href="https://deuskarao.github.io/UniPulse/" target="_blank" class="platform-btn purple">
+    <div class="col aos">
+      <span class="col-badge purple">Akademik Analitik</span>
+      <h3 class="col-title">UniPulse</h3>
+      <p class="col-desc">Veriye dayalı analizlerle akademik hedeflerinize ulaşın.</p>
+      <a href="https://deuskarao.github.io/UniPulse/" target="_blank" class="col-btn purple">
         UniPulse'a Git
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
 
-      <div class="preview-card purple">
-        <div class="preview-top">
-          <div class="preview-chart-area">
-            <div class="preview-chart-label">GPA Trendi</div>
-            <div class="preview-chart-value purple">3.45</div>
-            <div class="preview-line-chart">
-              <svg viewBox="0 0 200 80" preserveAspectRatio="none" width="100%" height="100%">
-                <line x1="0" y1="20" x2="200" y2="20" class="chart-grid-line"/>
-                <line x1="0" y1="40" x2="200" y2="40" class="chart-grid-line"/>
-                <line x1="0" y1="60" x2="200" y2="60" class="chart-grid-line"/>
-                <text x="0" y="18" class="chart-axis-label">4.0</text>
-                <text x="0" y="38" class="chart-axis-label">3.0</text>
-                <text x="0" y="58" class="chart-axis-label">2.0</text>
-                <text x="0" y="76" class="chart-axis-label">1.0</text>
-                <path d="M10,55 L40,48 L70,50 L100,38 L130,30 L160,22 L190,18" class="chart-line" stroke="var(--purple)"/>
-                <path d="M10,55 L40,48 L70,50 L100,38 L130,30 L160,22 L190,18 L190,80 L10,80 Z" class="chart-area" fill="var(--purple)"/>
-                <circle cx="10" cy="55" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="40" cy="48" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="70" cy="50" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="100" cy="38" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="130" cy="30" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="160" cy="22" class="chart-dot" fill="var(--purple)"/>
-                <circle cx="190" cy="18" class="chart-dot" fill="var(--purple)"/>
-                <text x="10" y="78" class="chart-axis-label">Oca</text>
-                <text x="38" y="78" class="chart-axis-label">Şub</text>
-                <text x="66" y="78" class="chart-axis-label">Mar</text>
-                <text x="96" y="78" class="chart-axis-label">Nis</text>
-                <text x="126" y="78" class="chart-axis-label">May</text>
-                <text x="156" y="78" class="chart-axis-label">Haz</text>
+      <div class="dash-card">
+        <div class="dash-top">
+          <div class="dash-chart">
+            <div class="dash-chart-title">GPA Trendi</div>
+            <div class="dash-chart-val purple">3.45</div>
+            <div style="width:100%;height:72px;">
+              <svg viewBox="0 0 220 72" preserveAspectRatio="none" width="100%" height="100%">
+                <line x1="20" y1="8" x2="220" y2="8" class="c-grid"/>
+                <line x1="20" y1="22" x2="220" y2="22" class="c-grid"/>
+                <line x1="20" y1="36" x2="220" y2="36" class="c-grid"/>
+                <line x1="20" y1="50" x2="220" y2="50" class="c-grid"/>
+                <text x="0" y="10" class="c-label">4.0</text>
+                <text x="0" y="24" class="c-label">3.0</text>
+                <text x="0" y="38" class="c-label">2.0</text>
+                <text x="0" y="52" class="c-label">1.0</text>
+                <path d="M30,46 L60,40 L90,42 L120,32 L150,26 L180,20 L210,16" class="c-line" stroke="var(--purple)"/>
+                <path d="M30,46 L60,40 L90,42 L120,32 L150,26 L180,20 L210,16 L210,56 L30,56 Z" class="c-area" fill="var(--purple)"/>
+                <circle cx="30" cy="46" class="c-dot" fill="var(--purple)"/>
+                <circle cx="60" cy="40" class="c-dot" fill="var(--purple)"/>
+                <circle cx="90" cy="42" class="c-dot" fill="var(--purple)"/>
+                <circle cx="120" cy="32" class="c-dot" fill="var(--purple)"/>
+                <circle cx="150" cy="26" class="c-dot" fill="var(--purple)"/>
+                <circle cx="180" cy="20" class="c-dot" fill="var(--purple)"/>
+                <circle cx="210" cy="16" class="c-dot" fill="var(--purple)"/>
+                <text x="26" y="66" class="c-label">Oca</text>
+                <text x="56" y="66" class="c-label">Şub</text>
+                <text x="86" y="66" class="c-label">Mar</text>
+                <text x="116" y="66" class="c-label">Nis</text>
+                <text x="146" y="66" class="c-label">May</text>
+                <text x="176" y="66" class="c-label">Haz</text>
               </svg>
             </div>
           </div>
-          <div class="preview-side-widgets">
-            <div class="side-widget">
-              <div class="side-widget-label">Dersler</div>
-              <div class="side-bars">
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:85%;background:var(--purple)"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:70%;background:var(--purple);opacity:0.6"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:55%;background:var(--purple);opacity:0.35"></div></div></div>
+          <div class="dash-widgets">
+            <div class="dw">
+              <div class="dw-title">Dersler</div>
+              <div class="dw-bars">
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple)"></div><div class="dw-track"><div class="dw-fill" style="width:88%;background:var(--purple)"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.55"></div><div class="dw-track"><div class="dw-fill" style="width:68%;background:var(--purple);opacity:.55"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.3"></div><div class="dw-track"><div class="dw-fill" style="width:50%;background:var(--purple);opacity:.3"></div></div></div>
               </div>
             </div>
-            <div class="side-widget">
-              <div class="side-widget-label">Performans</div>
-              <div class="side-bars">
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:92%;background:var(--purple)"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:65%;background:var(--purple);opacity:0.6"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:48%;background:var(--purple);opacity:0.35"></div></div></div>
+            <div class="dw">
+              <div class="dw-title">Performans</div>
+              <div class="dw-bars">
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple)"></div><div class="dw-track"><div class="dw-fill" style="width:94%;background:var(--purple)"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.55"></div><div class="dw-track"><div class="dw-fill" style="width:62%;background:var(--purple);opacity:.55"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.3"></div><div class="dw-track"><div class="dw-fill" style="width:44%;background:var(--purple);opacity:.3"></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="preview-bottom">
-          <div class="preview-bottom-chart" style="width:100%;">
-            <div class="side-widget" style="width:100%;">
-              <div class="side-widget-label">Dönem Notları</div>
-              <div class="side-bars">
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:90%;background:var(--purple)"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:75%;background:var(--purple);opacity:0.6"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--purple);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:60%;background:var(--purple);opacity:0.35"></div></div></div>
-              </div>
+        <div class="dash-bottom">
+          <div class="dw" style="width:100%">
+            <div class="dw-title">Dönem Notları</div>
+            <div class="dw-bars">
+              <div class="dw-row"><div class="dw-dot" style="background:var(--purple)"></div><div class="dw-track"><div class="dw-fill" style="width:92%;background:var(--purple)"></div></div></div>
+              <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.55"></div><div class="dw-track"><div class="dw-fill" style="width:74%;background:var(--purple);opacity:.55"></div></div></div>
+              <div class="dw-row"><div class="dw-dot" style="background:var(--purple);opacity:.3"></div><div class="dw-track"><div class="dw-fill" style="width:58%;background:var(--purple);opacity:.3"></div></div></div>
             </div>
           </div>
         </div>
@@ -537,69 +471,70 @@ footer {
     </div>
 
     <!-- LifeOS -->
-    <div class="platform-side animate-on-scroll" style="transition-delay:0.1s">
-      <span class="platform-badge teal">Finansal Yönetim</span>
-      <h3 class="platform-name">LifeOS</h3>
-      <p class="platform-desc">Finansal özgürlüğünüz için akıllı yönetim.</p>
-      <a href="https://deuskarao.github.io/LifeOS/" target="_blank" class="platform-btn teal">
+    <div class="col aos" style="transition-delay:.08s">
+      <span class="col-badge teal">Finansal Yönetim</span>
+      <h3 class="col-title">LifeOS</h3>
+      <p class="col-desc">Finansal özgürlüğünüz için akıllı yönetim.</p>
+      <a href="https://deuskarao.github.io/LifeOS/" target="_blank" class="col-btn teal">
         LifeOS'a Git
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
 
-      <div class="preview-card teal">
-        <div class="preview-top">
-          <div class="preview-chart-area">
-            <div class="preview-chart-label">Bu Aylık Tasarruf</div>
-            <div class="preview-chart-value teal">₺4.250</div>
-            <div class="preview-line-chart">
-              <svg viewBox="0 0 200 80" preserveAspectRatio="none" width="100%" height="100%">
-                <line x1="0" y1="20" x2="200" y2="20" class="chart-grid-line"/>
-                <line x1="0" y1="40" x2="200" y2="40" class="chart-grid-line"/>
-                <line x1="0" y1="60" x2="200" y2="60" class="chart-grid-line"/>
-                <text x="0" y="18" class="chart-axis-label">8K</text>
-                <text x="0" y="38" class="chart-axis-label">6K</text>
-                <text x="0" y="58" class="chart-axis-label">4K</text>
-                <text x="0" y="76" class="chart-axis-label">2K</text>
-                <path d="M10,60 L40,52 L70,48 L100,42 L130,35 L160,28 L190,20" class="chart-line" stroke="var(--teal)"/>
-                <path d="M10,60 L40,52 L70,48 L100,42 L130,35 L160,28 L190,20 L190,80 L10,80 Z" class="chart-area" fill="var(--teal)"/>
-                <circle cx="10" cy="60" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="40" cy="52" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="70" cy="48" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="100" cy="42" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="130" cy="35" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="160" cy="28" class="chart-dot" fill="var(--teal)"/>
-                <circle cx="190" cy="20" class="chart-dot" fill="var(--teal)"/>
-                <text x="10" y="78" class="chart-axis-label">Oca</text>
-                <text x="38" y="78" class="chart-axis-label">Şub</text>
-                <text x="66" y="78" class="chart-axis-label">Mar</text>
-                <text x="96" y="78" class="chart-axis-label">Nis</text>
-                <text x="126" y="78" class="chart-axis-label">May</text>
-                <text x="156" y="78" class="chart-axis-label">Haz</text>
+      <div class="dash-card">
+        <div class="dash-top">
+          <div class="dash-chart">
+            <div class="dash-chart-title">Bu Aylık Tasarruf</div>
+            <div class="dash-chart-val teal">₺4.250</div>
+            <div style="width:100%;height:72px;">
+              <svg viewBox="0 0 220 72" preserveAspectRatio="none" width="100%" height="100%">
+                <line x1="20" y1="8" x2="220" y2="8" class="c-grid"/>
+                <line x1="20" y1="22" x2="220" y2="22" class="c-grid"/>
+                <line x1="20" y1="36" x2="220" y2="36" class="c-grid"/>
+                <line x1="20" y1="50" x2="220" y2="50" class="c-grid"/>
+                <text x="0" y="10" class="c-label">8K</text>
+                <text x="0" y="24" class="c-label">6K</text>
+                <text x="0" y="38" class="c-label">4K</text>
+                <text x="0" y="52" class="c-label">2K</text>
+                <path d="M30,50 L60,44 L90,40 L120,34 L150,28 L180,22 L210,14" class="c-line" stroke="var(--teal)"/>
+                <path d="M30,50 L60,44 L90,40 L120,34 L150,28 L180,22 L210,14 L210,56 L30,56 Z" class="c-area" fill="var(--teal)"/>
+                <circle cx="30" cy="50" class="c-dot" fill="var(--teal)"/>
+                <circle cx="60" cy="44" class="c-dot" fill="var(--teal)"/>
+                <circle cx="90" cy="40" class="c-dot" fill="var(--teal)"/>
+                <circle cx="120" cy="34" class="c-dot" fill="var(--teal)"/>
+                <circle cx="150" cy="28" class="c-dot" fill="var(--teal)"/>
+                <circle cx="180" cy="22" class="c-dot" fill="var(--teal)"/>
+                <circle cx="210" cy="14" class="c-dot" fill="var(--teal)"/>
+                <text x="26" y="66" class="c-label">Oca</text>
+                <text x="56" y="66" class="c-label">Şub</text>
+                <text x="86" y="66" class="c-label">Mar</text>
+                <text x="116" y="66" class="c-label">Nis</text>
+                <text x="146" y="66" class="c-label">May</text>
+                <text x="176" y="66" class="c-label">Haz</text>
               </svg>
             </div>
           </div>
-          <div class="preview-side-widgets">
-            <div class="side-widget">
-              <div class="side-widget-label">Giderler</div>
-              <div class="side-bars">
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:80%;background:var(--teal)"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:60%;background:var(--teal);opacity:0.6"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:40%;background:var(--teal);opacity:0.35"></div></div></div>
+          <div class="dash-widgets">
+            <div class="dw">
+              <div class="dw-title">Giderler</div>
+              <div class="dw-bars">
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal)"></div><div class="dw-track"><div class="dw-fill" style="width:82%;background:var(--teal)"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal);opacity:.55"></div><div class="dw-track"><div class="dw-fill" style="width:58%;background:var(--teal);opacity:.55"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal);opacity:.3"></div><div class="dw-track"><div class="dw-fill" style="width:38%;background:var(--teal);opacity:.3"></div></div></div>
               </div>
             </div>
-            <div class="side-widget">
-              <div class="side-widget-label">Birikim</div>
-              <div class="side-bars">
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal)"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:72%;background:var(--teal)"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.6"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:55%;background:var(--teal);opacity:0.6"></div></div></div>
-                <div class="side-bar-row"><div class="side-bar-dot" style="background:var(--teal);opacity:0.35"></div><div class="side-bar-track"><div class="side-bar-fill" style="width:38%;background:var(--teal);opacity:0.35"></div></div></div>
+            <div class="dw">
+              <div class="dw-title">Birikim</div>
+              <div class="dw-bars">
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal)"></div><div class="dw-track"><div class="dw-fill" style="width:75%;background:var(--teal)"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal);opacity:.55"></div><div class="dw-track"><div class="dw-fill" style="width:52%;background:var(--teal);opacity:.55"></div></div></div>
+                <div class="dw-row"><div class="dw-dot" style="background:var(--teal);opacity:.3"></div><div class="dw-track"><div class="dw-fill" style="width:36%;background:var(--teal);opacity:.3"></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="preview-bottom">
-          <div class="preview-bottom-chart" style="width:100%;display:flex;align-items:center;justify-content:center;">
-            <div class="donut-mock teal"></div>
+        <div class="dash-bottom">
+          <div class="dw" style="flex:1;display:flex;align-items:center;justify-content:center;padding:12px 0;">
+            <div class="donut-wrap"><div class="donut t"></div></div>
           </div>
         </div>
       </div>
@@ -610,54 +545,27 @@ footer {
 
 <!-- FEATURES -->
 <section class="features" id="features">
-  <h2 class="animate-on-scroll">Neden <span class="gradient">Vertex</span>?</h2>
-  <p class="sub animate-on-scroll">İki bağımsız ürün, tek bir vizyon: hayatınızı veriyle şekillendirmek.</p>
-
-  <div class="features-grid">
-    <div class="feature-card animate-on-scroll">
-      <div class="feature-icon purple">📊</div>
-      <h3>Gerçek Zamanlı Analitik</h3>
-      <p>Her iki platformda da anlık verilerle doğru kararlar al.</p>
-    </div>
-    <div class="feature-card animate-on-scroll" style="transition-delay:0.05s">
-      <div class="feature-icon teal">🔒</div>
-      <h3>Güvenli Altyapı</h3>
-      <p>Supabase tabanlı, uçtan uca şifreli veri saklama.</p>
-    </div>
-    <div class="feature-card animate-on-scroll" style="transition-delay:0.1s">
-      <div class="feature-icon neutral">⚡</div>
-      <h3>Minimal & Hızlı</h3>
-      <p>Temiz arayüz, sıfır gecikme. Sadece işe yarayan tasarım.</p>
-    </div>
-    <div class="feature-card animate-on-scroll" style="transition-delay:0.15s">
-      <div class="feature-icon teal">💰</div>
-      <h3>Finansal Kontrol</h3>
-      <p>Bütçeni, birikimlerini ve giderlerini tek yerden yönet.</p>
-    </div>
-    <div class="feature-card animate-on-scroll" style="transition-delay:0.2s">
-      <div class="feature-icon purple">🎓</div>
-      <h3>Akademik Başarı</h3>
-      <p>GPA trendlerini takip et, zayıf noktaları keşfet.</p>
-    </div>
-    <div class="feature-card animate-on-scroll" style="transition-delay:0.25s">
-      <div class="feature-icon neutral">🌐</div>
-      <h3>Her Yerden Erişim</h3>
-      <p>Bulut tabanlı platformlara istediğin cihazdan ulaş.</p>
-    </div>
+  <h2 class="aos">Neden <span class="g">Vertex</span>?</h2>
+  <p class="sub aos">İki bağımsız ürün, tek bir vizyon: hayatınızı veriyle şekillendirmek.</p>
+  <div class="f-grid">
+    <div class="f-card aos"><div class="f-icon purple">📊</div><h3>Gerçek Zamanlı Analitik</h3><p>Her iki platformda da anlık verilerle doğru kararlar al.</p></div>
+    <div class="f-card aos" style="transition-delay:.04s"><div class="f-icon teal">🔒</div><h3>Güvenli Altyapı</h3><p>Supabase tabanlı, uçtan uca şifreli veri saklama.</p></div>
+    <div class="f-card aos" style="transition-delay:.08s"><div class="f-icon neutral">⚡</div><h3>Minimal & Hızlı</h3><p>Temiz arayüz, sıfır gecikme. Sadece işe yarayan tasarım.</p></div>
+    <div class="f-card aos" style="transition-delay:.12s"><div class="f-icon teal">💰</div><h3>Finansal Kontrol</h3><p>Bütçeni, birikimlerini ve giderlerini tek yerden yönet.</p></div>
+    <div class="f-card aos" style="transition-delay:.16s"><div class="f-icon purple">🎓</div><h3>Akademik Başarı</h3><p>GPA trendlerini takip et, zayıf noktaları keşfet.</p></div>
+    <div class="f-card aos" style="transition-delay:.2s"><div class="f-icon neutral">🌐</div><h3>Her Yerden Erişim</h3><p>Bulut tabanlı platformlara istediğin cihazdan ulaş.</p></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <span style="font-size:12px;color:var(--text-tertiary)">© 2026 Vertex. Tüm hakları saklıdır.</span>
+  <span>© 2026 Vertex. Tüm hakları saklıdır.</span>
 </footer>
 
 <script>
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+const o = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+document.querySelectorAll('.aos').forEach(el => o.observe(el));
 </script>
 
 </body>
