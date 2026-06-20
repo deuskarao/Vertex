@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRUDEL — Hayatını Kolaylaştıran Dijital Platformlar</title>
+<link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -69,6 +70,34 @@ nav {
   text-decoration: none;
 }
 .nav-cta:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.12); }
+
+.nav-login { position: relative; }
+.nav-login-dropdown {
+  position: absolute; top: calc(100% + 12px); right: 0;
+  min-width: 200px; border-radius: 12px; overflow: hidden;
+  background: rgba(15, 20, 40, 0.95); border: 1px solid var(--border);
+  backdrop-filter: blur(24px); padding: 6px;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: all 0.2s ease;
+}
+.nav-login:hover .nav-login-dropdown,
+.nav-login:focus-within .nav-login-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.nav-login-dropdown a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  color: var(--text-secondary); text-decoration: none; transition: all 0.15s;
+}
+.nav-login-dropdown a:hover { background: rgba(255,255,255,0.06); color: var(--text-primary); }
+.nav-login-dropdown .dd-icon {
+  width: 28px; height: 28px; border-radius: 7px; display: flex;
+  align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
+}
+.nav-login-dropdown .dd-icon.purple { background: var(--purple-soft); color: var(--purple); }
+.nav-login-dropdown .dd-icon.teal { background: var(--teal-soft); color: var(--teal); }
+.nav-login-dropdown .dd-label { font-weight: 600; }
+.nav-login-dropdown .dd-sub { font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
 
 /* ─── HERO ─── */
 .hero {
@@ -361,6 +390,7 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links a:not(.nav-cta) { display: none; }
+  .nav-login { display: none; }
   .showcase-grid { grid-template-columns: 1fr; }
   .features-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 36px; letter-spacing: -1px; }
@@ -379,7 +409,19 @@ footer {
   <div class="nav-links">
     <a href="#platforms">Ürünler</a>
     <a href="#features">Özellikler</a>
-    <a href="https://deuskarao.github.io/LifeOS/" target="_blank">Giriş Yap</a>
+    <div class="nav-login">
+      <span class="nav-cta" style="cursor:pointer">Giriş Yap ↓</span>
+      <div class="nav-login-dropdown">
+        <a href="https://deuskarao.github.io/UniPulse/" target="_blank">
+          <span class="dd-icon purple">🎓</span>
+          <span><span class="dd-label">UniPulse</span><br><span class="dd-sub">Akademik Analitik</span></span>
+        </a>
+        <a href="https://deuskarao.github.io/LifeOS/" target="_blank">
+          <span class="dd-icon teal">💰</span>
+          <span><span class="dd-label">LifeOS</span><br><span class="dd-sub">Finansal Yönetim</span></span>
+        </a>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -391,7 +433,7 @@ footer {
 
   <div class="hero-badge">
     <span class="dot"></span>
-    İki güçlü platform, tek bir ekosistem
+    Dijital ekosistem
   </div>
 
   <h1>Hayatını kolaylaştıran<br><span class="gradient">iki güçlü platform.</span></h1>
